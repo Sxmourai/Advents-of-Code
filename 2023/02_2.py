@@ -10,22 +10,23 @@ maxs = {
     "green": 13,
     "blue": 14
 }
-sum_ids = 0
+sum_powers = 0
 for game_id,game in enumerate(c):
     game_id +=1 # Starts at 1
     takes = game.split(": ")[-1] # Takes second part (the cubes)
-
+    mins = {
+        "red":  0,
+        "green":0,
+        "blue": 0,
+    }
     for load in takes.split(";"):
         for take in load.split(","):
             amount,color = take.lstrip(" ").split(" ")
             amount = int(amount)
             color = color.strip() # remove potential \n
-            if amount > maxs[color]:
-                print(f"Game {game_id} is impossible, too much {color} ({amount} > {maxs[color]})")
-                break
-        else: # continue breaking if broke up ^^
-            continue
-        break
-    else: # No break, so add id
-        sum_ids += game_id
-print(sum_ids) # 2256
+            
+            if amount > mins[color]:
+                mins[color] = amount
+    print(f"Min for game {game_id} is {mins}")
+    sum_powers += mins["red"] * mins["green"] * mins["blue"]
+print(sum_powers)
