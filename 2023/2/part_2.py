@@ -29,4 +29,4 @@ for game_id,game in enumerate(c):
                 mins[color] = amount
     print(f"Min for game {game_id} is {mins}")
     sum_powers += mins["red"] * mins["green"] * mins["blue"]
-print(sum_powers)
+print(sum_powers) # 74229
