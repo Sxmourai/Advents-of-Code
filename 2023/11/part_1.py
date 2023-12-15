@@ -41,8 +41,10 @@ for g1,g2 in pairs:
     x2,y2=g2
     dx = x2-x
     dy = y2-y
-    distances.append((dx,dy,g1,g2,dx*2+dy*2))
+    distances.append((dx,dy,g1,g2,abs(dx+dy)+1))
 
 print(distances)
 for dist in distances:
     print(dist)
+
+print(sum(map(lambda x: x[-1], distances)))
